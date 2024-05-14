@@ -1,0 +1,31 @@
+# Loại bỏ file cấu hình có thông tin nhạy cảm
+config/config.php
+
+# Loại bỏ thư mục 'node_modules/' được tạo bởi npm
+node_modules/
+
+# Loại bỏ thư mục 'vendor/' được tạo bởi Composer (PHP)
+vendor/
+
+# Loại bỏ các file tạm thời hoặc file log
+*.log
+*.tmp
+*.temp
+
+# Loại bỏ các file cấu hình của IDE hoặc trình chỉnh sửa văn bản
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Loại bỏ các file cơ sở dữ liệu SQLite
+*.db
+*.sqlite
+
+# Các tệp hệ thống macOS không cần thiết
+.DS_Store
+
+# Thư mục chứa các file biên dịch
+/bin/
+/obj/
+/out/
+/build/
