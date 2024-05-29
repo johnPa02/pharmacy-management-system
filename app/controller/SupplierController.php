@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Controller.php';
+require_once './core/Controller.php';
 require_once BASE_PATH . '/app/model/Supplier.php';  
 
 class SupplierController extends Controller {
@@ -9,13 +9,13 @@ class SupplierController extends Controller {
         $supplierModel = $this->model('Supplier');
         $suppliers = $supplierModel->getAllSuppliers();
         $content = $this->view('supplier/list_suppliers', ['suppliers' => $suppliers], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     
     public function addSupplier() {
         $content = $this->view('supplier/add_supplier', [], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     
@@ -42,7 +42,7 @@ class SupplierController extends Controller {
         $currentSupplier = $supplierModel->getSupplier($maNCC);
         
         $content = $this->view('supplier/edit_supplier', ['supplier' => $currentSupplier], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
     
     public function updateSupplierSubmit($maNCC) {
@@ -56,7 +56,7 @@ class SupplierController extends Controller {
 
             try {
                 $supplierModel->updateSupplier($maNCC, $data);
-                header('Location: /pharmacy-management-system/public/index.php/listSuppliers');
+                header('Location: http://localhost:8083/listSuppliers');
                 exit;
             } catch (Exception $e) {
                 $this->view('supplier/editSupplier', ['error' => $e->getMessage(), 'maNCC' => $maNCC]);
@@ -72,7 +72,7 @@ class SupplierController extends Controller {
         $supplierModel = $this->model('Supplier');
         try {
             $supplierModel->deleteSupplier($maNCC);
-            header('Location: /pharmacy-management-system/public/index.php/listSuppliers');
+            header('Location: http://localhost:8083/listSuppliers');
             exit;
         } catch (Exception $e) {
             $this->view('supplier/listSuppliers', ['error' => $e->getMessage()]);

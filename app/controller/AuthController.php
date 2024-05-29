@@ -1,6 +1,6 @@
 <?php
-require_once '../core/Controller.php';
-require_once '../app/model/Account.php';
+require_once './core/Controller.php';
+require_once './app/model/Account.php';
 
 class AuthController extends Controller {
 
@@ -42,7 +42,7 @@ class AuthController extends Controller {
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);
         session_destroy();
-        header('Location: /pharmacy-management-system/public/index.php/login');
+        header('Location: /login');
         exit;
     }
 }

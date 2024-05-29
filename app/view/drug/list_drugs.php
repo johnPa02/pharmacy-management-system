@@ -6,7 +6,7 @@
         </div>
         <div class="col-12">
             <!-- Search form -->
-            <form action="/pharmacy-management-system/public/index.php/searchDrugs" method="post" class="form-inline my-2 my-lg-0">
+            <form action="http://localhost:8083/searchDrugs" method="post" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm thuốc" aria-label="Search" name="searchTerm">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
             </form>

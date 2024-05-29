@@ -1,12 +1,12 @@
 <?php
-require_once '../core/Controller.php';
+require_once './core/Controller.php';
 require_once BASE_PATH .'/app/model/Sale.php';
 
 class SaleController extends Controller {
     
     public function addSale() {
         $content = $this->view('sale/add_sale', [], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
     
     public function addSaleSubmit() {
@@ -64,12 +64,12 @@ class SaleController extends Controller {
                 }
     
                 
-                header('Location: /pharmacy-management-system/public/index.php/saleDetail/' . $saleId);
+                header('Location: http://localhost:8083/saleDetail/' . $saleId);
                 exit;
             } catch (Exception $e) {
                 
                 $content = $this->view('sale/add_sale', ['error' => $e->getMessage()], true);
-                include '../app/view/layout.php';
+                include './app/view/layout.php';
             }
         }
     }
@@ -101,7 +101,7 @@ class SaleController extends Controller {
         }
 
         $content = $this->view('sale/sale_detail', ['sale' => $sale, 'saleDetails' => $saleDetails], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     

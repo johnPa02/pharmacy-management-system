@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Model.php';
+require_once './core/Model.php';
 
 class Supplier extends Model {
     private $table = 'nha_cung_cap';

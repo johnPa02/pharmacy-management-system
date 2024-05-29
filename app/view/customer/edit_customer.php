@@ -6,7 +6,7 @@
         echo '<div class="alert alert-danger">' . htmlspecialchars($data['error']) . '</div>';
     }
     ?>
-    <form action="/pharmacy-management-system/public/index.php/updateCustomerSubmit/<?= $customer['maKH'] ?>" method="post" class="bg-light p-4">
+    <form action="http://localhost:8083/updateCustomerSubmit/<?= $customer['maKH'] ?>" method="post" class="bg-light p-4">
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($customer['email']); ?>" required>

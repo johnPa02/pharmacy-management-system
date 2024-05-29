@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Controller.php';
+require_once './core/Controller.php';
 require_once BASE_PATH .'/app/model/Drug.php';
 
 class DrugController extends Controller {
@@ -12,7 +12,7 @@ class DrugController extends Controller {
         $suppliers = $supplierModel->getAllSuppliers();
         $data = ['drugs' => $drugs, 'suppliers' => $suppliers];
         $content = $this->view('drug/list_drugs', $data, true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     
@@ -23,12 +23,12 @@ class DrugController extends Controller {
         $suppliers = $supplierModel->getAllSuppliers();
         $data = ['drugs' => $drugs, 'suppliers' => $suppliers];
         $content = $this->view('drug/add_drug', $data, true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     public function addDrugSubmit() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/pharmacy-management-system/public/images/';
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/images/';
             $imageName = $_FILES['image']['name'];
             $imagePath = $uploadDir . basename($imageName);  
     
@@ -40,7 +40,7 @@ class DrugController extends Controller {
                     'loai' => $_POST['loai'], 
                     'hanSuDung' => $_POST['hanSuDung'],
                     'maNCC' => $_POST['maNCC'],
-                    'image' => '/pharmacy-management-system/public/images/' . basename($imageName) 
+                    'image' => 'http://localhost:8083/images/' . basename($imageName) 
                 ];
     
                 $drugModel = $this->model('Drug');
@@ -63,14 +63,14 @@ class DrugController extends Controller {
         $supplierModel = $this->model('Supplier');
         $suppliers = $supplierModel->getAllSuppliers();
         $content = $this->view('drug/edit_drug', ['drug' => $currentdrug, 'suppliers' => $suppliers], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     public function updateDrugSubmit($maThuoc) {
         $drugModel = $this->model('Drug');
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $currentDrug = $drugModel->getDrug($maThuoc);
-            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/pharmacy-management-system/public/images/';
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . 'http://localhost:8083/images/';
             $data = [
                 'giaBan' => $_POST['giaBan'],
                 'giaNhap' => $_POST['giaNhap'],
@@ -89,7 +89,7 @@ class DrugController extends Controller {
     
                 
                 if (move_uploaded_file($_FILES['newImage']['tmp_name'], $imagePath)) {
-                    $data['image'] = '/pharmacy-management-system/public/images/' . basename($imageName);
+                    $data['image'] = 'http://localhost:8083/images/' . basename($imageName);
                 } else {
                     $this->view('drug/editDrug', ['error' => 'Failed to upload new image.', 'maThuoc' => $maThuoc]);
                     return;
@@ -99,7 +99,7 @@ class DrugController extends Controller {
             
             try {
                 $drugModel->updateDrug($maThuoc, $data);
-                header('Location: /pharmacy-management-system/public/index.php/listDrugs');
+                header('Location: http://localhost:8083/index.php/listDrugs');
                 exit;
             } catch (Exception $e) {
                 $this->view('error', ['error' => $e->getMessage(), 'maThuoc' => $maThuoc]);
@@ -115,7 +115,7 @@ class DrugController extends Controller {
         $drugModel = $this->model('Drug');
         try {
             $drugModel->deleteDrug($maThuoc);
-            header('Location: /pharmacy-management-system/public/index.php/listDrugs');
+            header('Location: http://localhost:8083/index.php/listDrugs');
             exit;
         } catch (Exception $e) {
             $this->view('drug/listDrugs', ['error' => $e->getMessage()]);
@@ -128,7 +128,7 @@ class DrugController extends Controller {
         $drugs = $drugModel->searchDrugs($searchTerm);
         $data = ['drugs' => $drugs, 'searchTerm' => $searchTerm];
         $content = $this->view('drug/list_drugs', $data, true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
     public function apiSearchDrug($searchTerm) {
         $drugModel = $this->model('Drug');

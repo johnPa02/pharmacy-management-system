@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Model.php';
+require_once './core/Model.php';
 
 class Sale extends Model {
     private $table = 'hoa_don_ban_thuoc';

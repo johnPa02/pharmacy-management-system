@@ -76,7 +76,7 @@ function searchDrug(searchQuery) {
         return; // Exit the function to prevent unnecessary API calls
     }
 
-    fetch(`/pharmacy-management-system/public/index.php/searchDrugAPI/${encodeURIComponent(searchQuery)}`)
+    fetch(`http://localhost:8083/searchDrugAPI/${encodeURIComponent(searchQuery)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok'); // Throw an error if response is not OK
@@ -129,7 +129,7 @@ function checkCustomerExists(maKH) {
         document.getElementById('customerNameDisplay').textContent = '';
         return;
     }
-    fetch(`/pharmacy-management-system/public/index.php/getCustomerDetails/${encodeURIComponent(maKH)}`)
+    fetch(`http://localhost:8083/getCustomerDetails/${encodeURIComponent(maKH)}`)
         .then(response => response.json())
         .then(data => {
             if (data && data.hoTen) {

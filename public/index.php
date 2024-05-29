@@ -1,8 +1,9 @@
 <?php
 
-require_once '../core/Request.php';
-require_once '../config/config.php';
-require_once '../core/Router.php';
+require_once './core/Request.php';
+require_once './config/config.php';
+require_once './core/Router.php';
+require_once './app/middleware/AuthMiddleware.php';
 // Start session to manage user sessions throughout the application
 session_start();
 

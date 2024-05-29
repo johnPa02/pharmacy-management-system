@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <h2 class="text-center">Cập Nhật Nhân Viên</h2>
     
-    <form action="/pharmacy-management-system/public/index.php/updateEmployeeSubmit/<?= $employee['maNV'] ?>" method="post" class="p-5 bg-white">
+    <form action="http://localhost:8083/updateEmployeeSubmit/<?= $employee['maNV'] ?>" method="post" class="p-5 bg-white">
     <?php if (isset($data['error'])): ?>
         <div class="alert alert-danger"><?php echo htmlspecialchars($data['error']); ?></div>
     <?php endif; ?>

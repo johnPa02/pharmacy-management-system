@@ -1,5 +1,4 @@
 <?php
-require_once BASE_PATH . '/app/middleware/AuthMiddleware.php';
 
 class Router {
     private $routes = [];
@@ -200,7 +199,7 @@ class Router {
         $url = explode('?', $url)[0];
     
         // Remove the base path as before
-        $basePath = '/pharmacy-management-system/public/index.php/';
+        $basePath = 'http://localhost:8083/index.php/';
         $url = preg_replace("#^" . preg_quote($basePath, '#') . "#", '', $url);
     
         // Ensure no leading or trailing slashes
@@ -226,7 +225,7 @@ class Router {
         $route = $this->getRoute($url);
 
         if ($route) {
-            require_once '../app/controller/' . $route['controller'] . '.php';
+            require_once './app/controller/' . $route['controller'] . '.php';
             $url = $this->normalizeUrl($url);
             if ($this->processMiddlewares($route, new Request($url))) {
                 $controllerName = $route['controller'];

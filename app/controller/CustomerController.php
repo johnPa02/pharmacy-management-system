@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Controller.php';
+require_once './core/Controller.php';
 require_once BASE_PATH .'/app/model/Customer.php';
 
 class CustomerController extends Controller {
@@ -9,13 +9,13 @@ class CustomerController extends Controller {
         $customerModel = $this->model('Customer');
         $customers = $customerModel->getAllCustomers();
         $content = $this->view('customer/manage_customer', ['customers' => $customers], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     
     public function addCustomer() {
         $content = $this->view('customer/add_customer',[], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
     
     public function addCustomerSubmit() {
@@ -38,11 +38,11 @@ class CustomerController extends Controller {
                     exit;
                 } else {
                     $content = $this->view('customer/add_customer', ['error' => 'Thêm khách hàng không thành công']);
-                    include '../app/view/layout.php';
+                    include './app/view/layout.php';
                 }
             } catch (Exception $e) {
                 $content = $this->view('customer/add_customer', ['error' => $e->getMessage()], true);
-                include '../app/view/layout.php';
+                include './app/view/layout.php';
                 
             }
         }
@@ -56,7 +56,7 @@ class CustomerController extends Controller {
         $currentAccount = $accountModel->getAccount($maKH);
         $currentCustomer['email'] = $currentAccount['email'];
         $content = $this->view('customer/edit_customer', ['customer' => $currentCustomer], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     
@@ -75,12 +75,12 @@ class CustomerController extends Controller {
             $customerModel = $this->model('Customer');
             try {
                 $customerModel->updateCustomer($maKH, $customerData, $accountData);
-                header('Location: /pharmacy-management-system/public/index.php/manageCustomers');
+                header('Location: http://localhost:8083/manageCustomers');
                 exit;
 
             } catch (Exception $e) {
                 $this->view('customer/edit_customer', ['error' => $e->getMessage(), 'maKH' => $maKH]);
-                include '../app/view/layout.php';
+                include './app/view/layout.php';
             }
         }
     }
@@ -90,7 +90,7 @@ class CustomerController extends Controller {
         $customerModel = $this->model('Customer');
         try {
             $customerModel->deleteCustomer($maKH);
-            header('Location: /pharmacy-management-system/public/index.php/manageCustomers');
+            header('Location: http://localhost:8083/manageCustomers');
             exit;   
         } catch (Exception $e) {
             $this->view('manageCustomers', ['error' => $e->getMessage()], true);

@@ -1,5 +1,5 @@
 <?php
-require_once '../core/Controller.php';
+require_once './core/Controller.php';
 
 class EmployeeController extends Controller {
 
@@ -7,12 +7,12 @@ class EmployeeController extends Controller {
         $employeeModel = $this->model('Employee');
         $employees = $employeeModel->getAllEmployees();
         $content = $this->view('employee/manage_employees', ['employees' => $employees], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     public function addEmployee() {
         $content = $this->view('employee/add_employee', [], true);
-        include "../app/view/layout.php";
+        include "./app/view/layout.php";
     }
 
     public function addEmployeeSubmit() {
@@ -33,7 +33,7 @@ class EmployeeController extends Controller {
             $employeeModel = $this->model('Employee');
             try {
                 $employeeModel->addEmployee($employeeData, $accountData);
-                header('Location: /pharmacy-management-system/public/index.php/manageEmployees');
+                header('Location: http://localhost:8083/manageEmployees');
                 exit;
             } catch (Exception $e) {
                 $this->view('employee/addEmployee', ['error' => $e->getMessage()]);
@@ -49,7 +49,7 @@ class EmployeeController extends Controller {
         $currentEmployee['email'] = $currentAccount['email'];
         $currentEmployee['vaiTro'] = $currentAccount['vaiTro'];
         $content = $this->view('employee/edit_employee', ['employee' => $currentEmployee], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     public function updateEmployeeSubmit($maNhanVien) {
@@ -69,7 +69,7 @@ class EmployeeController extends Controller {
             ];
             try {
                 $employeeModel->updateEmployee($employeeData, $accountData, $maNhanVien);
-                header('Location: /pharmacy-management-system/public/index.php/manageEmployees');
+                header('Location: http://localhost:8083/manageEmployees');
                 exit;
             } catch (Exception $e) {
                 $this->view('employee/editEmployee', ['error' => $e->getMessage(), 'maNhanVien' => $maNhanVien]);
@@ -81,7 +81,7 @@ class EmployeeController extends Controller {
         $employeeModel = $this->model('Employee');
         try {
             $employeeModel->deleteEmployee($maNhanVien);
-            header('Location: /pharmacy-management-system/public/index.php/manageEmployees');
+            header('Location: http://localhost:8083/manageEmployees');
             exit;
         } catch (Exception $e) {
             $this->view('employee/manage_employees', ['error' => $e->getMessage()], true);

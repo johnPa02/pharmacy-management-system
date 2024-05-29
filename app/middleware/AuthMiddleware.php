@@ -6,7 +6,7 @@ class AuthMiddleware {
         $userRole = $_SESSION['user_role'] ?? '';
 
         if (!$this->isAuthorized($userRole, $request->getUrl())) {
-            header('Location: '. BASE_PATH .'/login'); 
+            header('Location: /login'); 
             exit;
         }
 

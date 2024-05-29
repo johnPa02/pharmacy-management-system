@@ -29,3 +29,5 @@ vendor/
 /obj/
 /out/
 /build/
+create-secrets.sh
+.env

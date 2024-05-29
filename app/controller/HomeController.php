@@ -5,7 +5,7 @@ class HomeController extends Controller {
     
     public function index() {
         $content = $this->view('home/index', [], true);
-        include '../app/view/layout.php';
+        include './app/view/layout.php';
     }
 
     

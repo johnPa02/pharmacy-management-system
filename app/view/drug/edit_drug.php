@@ -1,5 +1,5 @@
 <div class="container">
-        <form action="/pharmacy-management-system/public/index.php/updateDrugSubmit/<?= $drug['maThuoc'] ?>" method="post" enctype="multipart/form-data">
+        <form action="http://localhost:8083/updateDrugSubmit/<?= $drug['maThuoc'] ?>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-5 mr-auto">
                     <div class="border-custom text-center">
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
-                    <a href='/pharmacy-management-system/public/index.php/deleteDrug/<?= $drug['maThuoc'] ?>' class='btn btn-danger btn-sm'>Xóa thuốc</a>
+                    <a href='http://localhost:8083/deleteDrug/<?= $drug['maThuoc'] ?>' class='btn btn-danger btn-sm'>Xóa thuốc</a>
                     
                 </div>
             </div>
